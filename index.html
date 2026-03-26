@@ -6,6 +6,21 @@
 
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded arjs>
+		<!-- The Colosseum -->
+		<a-assets>
+			<a-asset-item id="arena_model" src="models/arena/model.obj"></a-asset-item>
+			<a-asset-item id="arena_model_mtl" src="models/arena/model.mtl"></a-asset-item>
+		</a-assets>
+
+		<a-marker type="pattern" url="models/arena/pattern.patt" markerhandler>
+			<a-entity obj-model="obj: #arena_model; mtl: #arena_model_mtl" position="0 0 0" rotation="-90 0 0" scale="0.02 0.02 0.02">
+
+
+			</a-entity>
+			<a-text value="\n\n\n\n\n\n\n\n\nThe Colosseum" height="3" width="3"
+				align="center" rotation="-90 0 0" color="red" position="0 -0.3 0"></a-text>
+		</a-marker>
+
 		<a-entity camera></a-entity>
 	</a-scene>
 </body>
