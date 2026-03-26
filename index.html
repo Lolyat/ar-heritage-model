@@ -21,6 +21,22 @@
 				align="center" rotation="-90 0 0" color="red" position="0 -0.3 0"></a-text>
 		</a-marker>
 
+		<!-- Taj Mahal -->
+		 <a-assets>
+			<a-asset-item id="tajmahal_model" src="models/tajmahal/model.obj"></a-asset-item>
+			<a-asset-item id="tajmahal_model_mtl" src="models/tajmahal/model.3ds"></a-asset-item>
+		</a-assets>
+
+		<a-marker type="pattern" url="models/tajmahal/pattern.patt" markerhandler>
+			<a-entity obj-model="obj: #tajmahal_model; mtl: #tajmahal_model_mtl" position="0 0 0" rotation="-90 00 00"
+				scale="0.002 0.002 0.002 ">
+
+
+			</a-entity>
+			<a-text value="\n\n\n\n\n\n\n\n\nTaj Mahal" height="3" width="3"
+				align="center" rotation="-90 00 0" color="red" position="0 -0.3 0"></a-text>
+		</a-marker>
+
 		<a-entity camera></a-entity>
 	</a-scene>
 </body>
