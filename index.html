@@ -51,6 +51,20 @@
 				align="center" rotation="-90 0 0" color="red" position="0 -0.3 0"></a-text>
 		</a-marker>
 
+		<!-- Tower of Pisa -->
+		 <a-assets>
+			<a-asset-item id="towerofpisa_model" src="models/towerofpisa/model.obj"></a-asset-item>
+			<a-asset-item id="towerofpisa_model_mtl" src="models/towerofpisa/model.mtl"></a-asset-item>
+		</a-assets>
+		<a-marker type="pattern" url="models/towerofpisa/pattern.patt" markerhandler>
+			<a-entity obj-model="obj: #towerofpisa_model; mtl: #towerofpisa_model_mtl" position="0 0 0" rotation="-140 0 0" scale="0.1 0.1 0.1">
+
+
+			</a-entity>
+			<a-text value="\n\n\n\n\n\n\n\n\nLeaning Tower of Pisa" height="3"
+				width="3" align="center" rotation="-90 0 0" color="red" position="0 -0.3 0"></a-text>
+		</a-marker>
+
 		<a-entity camera></a-entity>
 	</a-scene>
 </body>
