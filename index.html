@@ -37,6 +37,20 @@
 				align="center" rotation="-90 00 0" color="red" position="0 -0.3 0"></a-text>
 		</a-marker>
 
+		<!-- Statue of Liberty -->
+		 <a-assets>
+			<a-asset-item id="statueofliberty_model" src="models/statueofliberty/model.obj"></a-asset-item>
+			<a-asset-item id="statueofliberty_model_mtl" src="models/statueofliberty/model.mtl"></a-asset-item>
+		</a-assets>
+		<a-marker type="pattern" url="models/statueofliberty/pattern.patt" markerhandler>
+			<a-entity obj-model="obj: #statueofliberty_model; mtl: #statueofliberty_model_mtl" position="0 0 0" rotation="-270 200 0" scale="1 1 1 1">
+
+
+			</a-entity>
+			<a-text value="\n\n\n\n\n\n\n\n\nStatue Of Liberty" height="3" width="3"
+				align="center" rotation="-90 0 0" color="red" position="0 -0.3 0"></a-text>
+		</a-marker>
+
 		<a-entity camera></a-entity>
 	</a-scene>
 </body>
