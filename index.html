@@ -2,6 +2,26 @@
 <head>
 	<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
 	<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+
+	<!-- Text to speech functionality -->
+	<script>
+		function speakDescription(text) {
+			if ('speechSynthesis' in window) {
+				window.speechSynthesis.cancel();
+				const utterance = new SpeechSynthesisUtterance(text);
+				utterance.rate = 0.8;
+				utterance.pitch = 1;
+				window.speechSynthesis.speak(utterance);
+			}
+		}
+
+		const descriptions = {
+			arena: "Welcome to the Roman Arena, also known as the Colosseum. Built between 70 to 80 AD in Rome, Italy, this magnificent amphitheater could hold up to 80,000 spectators. It was the largest amphitheater ever built and hosted gladiatorial contests and public spectacles. The Colosseum is a symbol of Imperial Rome and is considered one of the greatest works of Roman architecture and engineering.",
+			tajmahal: "Behold the Taj Mahal, the crown jewel of India. Built between 1632 and 1653 in Agra, India, this ivory-white marble mausoleum was commissioned by Mughal emperor Shah Jahan in memory of his beloved wife Mumtaz Mahal. It combines elements of Islamic, Persian, Ottoman Turkish and Indian architectural styles. The Taj Mahal is recognized as a UNESCO World Heritage Site and one of the New Seven Wonders of the World.",
+			statue: "You are viewing the Statue of Liberty, a symbol of freedom and democracy. Located on Liberty Island in New York Harbor, this colossal neoclassical sculpture was a gift from France to the United States in 1886. Designed by French sculptor Frédéric Auguste Bartholdi, it stands 305 feet tall including its pedestal. The statue represents Libertas, the Roman goddess of liberty, holding a torch and a tablet inscribed with the date of American Independence.",
+			pisa: "This is the famous Leaning Tower of Pisa, located in Pisa, Italy. Construction began in 1173 and was completed in 1372. The tower is the campanile or bell tower of the cathedral of Pisa. It became famous for its unintended tilt, which began during construction due to soft ground on one side. The tower leans at an angle of about 3.97 degrees and stands 56 meters tall. It is a UNESCO World Heritage Site and one of Italy's most recognizable landmarks."
+		};
+	</script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -67,6 +87,50 @@
 
 		<a-entity camera></a-entity>
 	</a-scene>
+
+	<!-- Register event handler for after mark detection and undetection to start/stop speech -->
+	<script>
+		AFRAME.registerComponent('markerhandler', {
+			init: function () {
+				const marker = this.el;
+				let hasSpoken = false;
+
+				marker.addEventListener('markerFound', function () {
+					if (!hasSpoken) {
+						const url = marker.getAttribute('url');
+						let description = '';
+
+						switch (url) {
+							case 'models/arena/pattern.patt':
+								description = descriptions.arena;
+								break;
+							case 'models/tajmahal/pattern.patt':
+								description = descriptions.tajmahal;
+								break;
+							case 'models/statueofliberty/pattern.patt':
+								description = descriptions.statue;
+								break;
+							case 'models/towerofpisa/pattern.patt':
+								description = descriptions.pisa;
+								break;
+						}
+
+						if (description) {
+							speakDescription(description);
+							hasSpoken = true;
+						}
+					}
+				});
+
+				marker.addEventListener('markerLost', function () {
+					hasSpoken = false;
+					if ('speechSynthesis' in window) {
+						window.speechSynthesis.cancel();
+					}
+				});
+			}
+		});
+	</script>
 </body>
 
 </html>
